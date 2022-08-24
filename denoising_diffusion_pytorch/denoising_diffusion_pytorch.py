@@ -797,7 +797,7 @@ class Trainer(object):
 
     def train(self):
         # wandb init
-        wandb.init(project="DDPM", entity="tikai103", group="DDP")
+        wandb.init(project="DDPM", entity="zeynep22", group="DDP")
         wandb.config.update(self.args)
 
         wandb.watch(self.model, log='all')
