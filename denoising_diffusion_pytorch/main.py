@@ -54,14 +54,15 @@ def get_args_parser():
 
 if __name__ == '__main__':
 
-    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    os.environ["CUDA_VISIBLE_DEVICES"] = "4,5,6,7"
+    #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    #os.environ["CUDA_VISIBLE_DEVICES"] = "4,5,6,7"
     print("Available GPUs:", torch.cuda.device_count())
     torch.backends.cudnn.benchmark = True
     os.environ["WANDB_API_KEY"] = "2e0fdcd07ddbc7559b7b097fbb4e066126c06d7e"
 
     parser = argparse.ArgumentParser('DINO', parents=[get_args_parser()])
     args = parser.parse_args()
+    args.num_gpus = 1
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     model = Unet(
