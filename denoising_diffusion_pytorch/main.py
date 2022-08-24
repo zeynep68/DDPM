@@ -58,7 +58,7 @@ if __name__ == '__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = "4,5,6,7"
     print("Available GPUs:", torch.cuda.device_count())
     torch.backends.cudnn.benchmark = True
-    os.environ["WANDB_API_KEY"] = "a9efb3b6cddc090dbf125d4c5d0dff12b178eb36"
+    os.environ["WANDB_API_KEY"] = "2e0fdcd07ddbc7559b7b097fbb4e066126c06d7e"
 
     parser = argparse.ArgumentParser('DINO', parents=[get_args_parser()])
     args = parser.parse_args()
