@@ -354,6 +354,7 @@ class Unet(nn.Module):
         self.final_conv = nn.Conv2d(dim, self.out_dim, 1)
 
     def forward(self, x, time):
+        print('tmp:', x.shape)
         x = self.init_conv(x)
         r = x.clone()
 
@@ -388,6 +389,8 @@ class Unet(nn.Module):
         x = torch.cat((x, r), dim=1)
 
         x = self.final_res_block(x, t)
+
+        print('tmp:', self.final_conv(x).shape)
         return self.final_conv(x)
 
 
@@ -529,8 +532,9 @@ class GaussianDiffusion(nn.Module):
         return posterior_mean, posterior_variance, posterior_log_variance_clipped
 
     def model_predictions(self, x, t):
+        print('before unet:', x.shape)
         model_output = self.model(x, t)
-
+        print('after unet:', x.shape)
         if self.objective == 'pred_noise':
             pred_noise = model_output
             x_start = self.predict_start_from_noise(x, t, model_output)
