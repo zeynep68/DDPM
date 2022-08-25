@@ -656,8 +656,9 @@ class GaussianDiffusion(nn.Module):
         b, c, h, w = x_start.shape
 
         noise = default(noise, lambda: torch.randn_like(x_start))
-
+        print('Noise:',noise.shape)
         x = self.q_sample(x_start=x_start, t=t, noise=noise)
+        print('X.shape:', x.shape)
         model_out = self.model(x, t)
 
         if self.objective == 'pred_noise':
