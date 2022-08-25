@@ -354,7 +354,6 @@ class Unet(nn.Module):
         self.final_conv = nn.Conv2d(dim, self.out_dim, 1)
 
     def forward(self, x, time):
-        print('init forward (x):', x.shape)
         x = self.init_conv(x)
         r = x.clone()
 
@@ -390,8 +389,6 @@ class Unet(nn.Module):
 
         x = self.final_res_block(x, t)
 
-        print('output forward:', self.final_conv(x).shape)
-        exit()
         return self.final_conv(x)
 
 
@@ -442,8 +439,6 @@ class GaussianDiffusion(nn.Module):
             ddim_sampling_eta=1.
     ):
         super().__init__()
-        print(model.out_dim)
-        print('test diff:',model.channels, model.out_dim)
         assert not (type(self) == GaussianDiffusion and model.channels != model.out_dim)
 
         self.channels = channels
@@ -652,14 +647,10 @@ class GaussianDiffusion(nn.Module):
             raise ValueError(f'invalid loss type {self.loss_type}')
 
     def p_losses(self, x_start, t, noise=None):
-        print('TEST LOSSES:', x_start.shape, len(t))
-        print(t.shape)
         b, c, h, w = x_start.shape
 
         noise = default(noise, lambda: torch.randn_like(x_start))
-        print('Noise:',noise.shape)
         x = self.q_sample(x_start=x_start, t=t, noise=noise)
-        print('X.shape:', x.shape)
         model_out = self.model(x, t)
 
         if self.objective == 'pred_noise':

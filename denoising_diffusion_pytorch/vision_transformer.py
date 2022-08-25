@@ -186,7 +186,7 @@ class PatchEmbed(nn.Module):
         B, C, H, W = x.shape
         x = self.proj(x).flatten(2).transpose(1, 2)
         return x
-    
+
 
 class VisionTransformer(nn.Module):
     """ Vision Transformer """
@@ -283,7 +283,6 @@ class VisionTransformer(nn.Module):
         return self.pos_drop(x), pos_embed
 
     def forward(self, x, t):
-        print('init forward (x):', x.shape)
         bs, c, w, h = x.shape
         x, pos_embed = self.prepare_tokens(x)
         # print('test vit:', x.shape, pos_embed.shape)
@@ -296,8 +295,6 @@ class VisionTransformer(nn.Module):
                range(self.patch_embed.num_patches)]  ###
         out = torch.cat(out, dim=2)  # [bs, patch_size*c, num_patches]
         out = F.fold(out, (w, h), self.patch_size, stride=self.patch_size)  ###
-        print('output forward:', out.shape)
-        exit()
         return out
 
     def get_last_selfattention(self, x):
