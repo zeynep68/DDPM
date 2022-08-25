@@ -36,7 +36,7 @@ def get_args_parser():
                 we recommend disabling
                 mixed precision training (--use_fp16 false) to avoid 
                 unstabilities.""")
-    parser.add_argument('--out_dim', default=1, type=int,
+    parser.add_argument('--out_dim', default=3, type=int,
                         help="""Dimensionality of
                 the DINO head output. For complex and large datasets large 
                 values (like 65k) work well.""")
@@ -196,8 +196,8 @@ if __name__ == '__main__':
     args.num_gpus = 1
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
-    model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
-    #model = VisionTransformer(img_size=[args.image_size], patch_size=1)
+    #model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
+    model = VisionTransformer(img_size=[args.image_size], patch_size=1)
 
     num_model_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
