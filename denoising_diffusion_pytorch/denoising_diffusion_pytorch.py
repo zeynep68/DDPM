@@ -850,7 +850,7 @@ class Trainer(object):
                     self.ema.update()
 
                     print('-----------------------')
-                    print(self.step, self.save_and_sample_every)
+                    print('hier::',self.step, self.save_and_sample_every)
                     print('-----------------------')
                     if self.step != 0 and self.step % self.save_and_sample_every == 0:
                         self.ema.ema_model.eval()
