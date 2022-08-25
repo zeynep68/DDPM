@@ -651,6 +651,8 @@ class GaussianDiffusion(nn.Module):
             raise ValueError(f'invalid loss type {self.loss_type}')
 
     def p_losses(self, x_start, t, noise=None):
+        print('TEST LOSSES:', x_start.shape, len(t))
+        print(t.shape)
         b, c, h, w = x_start.shape
 
         noise = default(noise, lambda: torch.randn_like(x_start))
