@@ -280,7 +280,7 @@ class VisionTransformer(nn.Module):
 
         return self.pos_drop(x), pos_embed
 
-    def forward(self, x):
+    def forward(self, x, t):
         print('init forward (x):', x.shape)
         bs, c, w, h = x.shape
         x, pos_embed = self.prepare_tokens(x)
