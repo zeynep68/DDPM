@@ -757,15 +757,16 @@ class Trainer(object):
         # for logging results in a folder periodically
         print('---------------')
         print('Not logging!!')
-        print('---------------')
-        exit()
+
+
         if self.accelerator.is_main_process:
             self.ema = EMA(diffusion_model, beta=args.ema_decay, update_every=args.ema_update_every)
 
             self.results_folder = Path(args.results_folder)
             self.results_folder.mkdir(exist_ok=True)
             print('results_folder:', self.results_folder)
-
+        print('---------------')
+        exit()
         # step counter state
         self.step = 0
 
