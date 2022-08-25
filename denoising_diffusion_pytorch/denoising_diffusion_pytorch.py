@@ -354,7 +354,7 @@ class Unet(nn.Module):
         self.final_conv = nn.Conv2d(dim, self.out_dim, 1)
 
     def forward(self, x, time):
-        print('tmp:', x.shape)
+        print('init forward (x):', x.shape)
         x = self.init_conv(x)
         r = x.clone()
 
@@ -390,7 +390,8 @@ class Unet(nn.Module):
 
         x = self.final_res_block(x, t)
 
-        print('tmp:', self.final_conv(x).shape)
+        print('output forward:', self.final_conv(x).shape)
+        exit()
         return self.final_conv(x)
 
 
