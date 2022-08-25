@@ -770,6 +770,9 @@ class Trainer(object):
 
     def save(self, milestone):
         if not self.accelerator.is_local_main_process:
+           print('------------')
+           print('returned')
+           print('------------')
            return
 
         data = {
