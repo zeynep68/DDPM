@@ -77,7 +77,7 @@ def get_args_parser():
     parser.add_argument('--inference_num_samples', default=1, type=int,
                         help='Number of samples to save during inference')
 
-    parser.add_argument('--timesteps', type=int, default=1000,
+    parser.add_argument('--timesteps', type=int, default=10,
                         help='Number of noise levels')
     parser.add_argument('--sampling_timesteps', type=int, default=1000,
                         help='Number of noise levels for sampling')
