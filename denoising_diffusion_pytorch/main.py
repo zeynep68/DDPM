@@ -196,7 +196,7 @@ if __name__ == '__main__':
     torch.backends.cudnn.benchmark = True
     os.environ["WANDB_API_KEY"] = "2e0fdcd07ddbc7559b7b097fbb4e066126c06d7e"
 
-    parser = argparse.ArgumentParser('DINO2', parents=[get_args_parser_vit()])
+    parser = argparse.ArgumentParser('DINO', parents=[get_args_parser()])
     args = parser.parse_args()
     args.num_gpus = 1
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
