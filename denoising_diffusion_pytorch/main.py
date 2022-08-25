@@ -11,11 +11,11 @@ def get_args_parser():
     parser = argparse.ArgumentParser('DINO', add_help=False)
 
     # Model parameters
-    parser.add_argument('--vit_image_size', type=int, default=32,
+    parser.add_argument('--vit_image_size', type=int, default=64,
                         help="""image size that enters vit; 
                     must match with patch_size: num_patches = (
                     vit_image_size/patch_size)**2""")
-    parser.add_argument('--image_size', type=int, default=56, help="""image 
+    parser.add_argument('--image_size', type=int, default=32, help="""image 
     size of in-distibution data. 
                     negative samples are first resized to image_size and then 
                     inflated to vit_image_size. This
