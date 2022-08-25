@@ -755,21 +755,16 @@ class Trainer(object):
         self.opt = Adam(diffusion_model.parameters(), lr=args.train_lr, betas=args.adam_betas)
 
         # for logging results in a folder periodically
-        print('---------------')
-        print('Not logging!!')
-
 
         if self.accelerator.is_main_process:
             self.ema = EMA(diffusion_model, beta=args.ema_decay, update_every=args.ema_update_every)
 
             self.results_folder = Path(args.results_folder)
             self.results_folder.mkdir(exist_ok=True)
-            print('results_folder:', self.results_folder)
-        print('---------------')
-        exit()
+
         # step counter state
         self.step = 0
-
+        
         # prepare model, dataloader, optimizer with accelerator
         self.model, self.dl, self.opt = self.accelerator.prepare(self.model, self.dl, self.opt)
 
