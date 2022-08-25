@@ -760,6 +760,7 @@ class Trainer(object):
 
             self.results_folder = Path(args.results_folder)
             self.results_folder.mkdir(exist_ok=True)
+            print('results_folder:', self.results_folder)
 
         # step counter state
         self.step = 0
