@@ -842,7 +842,9 @@ class Trainer(object):
                 self.opt.zero_grad()
 
                 accelerator.wait_for_everyone()
-
+                print('""""""" test test test """""""')
+                print(accelerator.is_main_process)
+                print('""""""""""""""""""""""""""""""')
                 if accelerator.is_main_process:
                     self.ema.to(device)
                     self.ema.update()
