@@ -852,6 +852,8 @@ class Trainer(object):
                         all_images = torch.cat(all_images_list, dim=0)
                         utils.save_image(all_images, str(self.results_folder / f'samples/sample-{milestone}.png'),
                                          nrow=int(math.sqrt(self.num_samples)))
+
+                        print('saved')
                         self.save(milestone)
 
                 self.step += 1
