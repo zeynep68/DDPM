@@ -22,14 +22,9 @@ def get_args_parser():
                     ensures that aux samples have same resolution as in-dist 
                     samples""")
     parser.add_argument('--arch', default='vit_small', type=str,
-                        choices=['vit_tiny', 'vit_small', 'vit_base', 'xcit',
-                                 'deit_tiny',
-                                 'deit_small'] + torchvision_archs +
-                                torch.hub.list(
-                            "facebookresearch/xcit:main"), help="""Name of 
+                        choices=['vit_tiny', 'vit_small', 'vit_base'], help="""Name of 
                             architecture to train. For quick experiments with 
-                            ViTs,
-                we recommend using vit_tiny or vit_small.""")
+                            ViTs, we recommend using vit_tiny or vit_small.""")
     parser.add_argument('--patch_size', default=4, type=int, help="""Size in 
     pixels
                 of input square patches - default 16 (for 16x16 patches). 
