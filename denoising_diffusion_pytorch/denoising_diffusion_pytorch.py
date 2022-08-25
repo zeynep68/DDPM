@@ -764,7 +764,7 @@ class Trainer(object):
 
         # step counter state
         self.step = 0
-        
+
         # prepare model, dataloader, optimizer with accelerator
         self.model, self.dl, self.opt = self.accelerator.prepare(self.model, self.dl, self.opt)
 
