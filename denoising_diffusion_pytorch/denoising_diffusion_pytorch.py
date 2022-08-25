@@ -769,6 +769,9 @@ class Trainer(object):
         self.model, self.dl, self.opt = self.accelerator.prepare(self.model, self.dl, self.opt)
 
     def save(self, milestone):
+        print('----------')
+        print('entered')
+        print('----------')
         if not self.accelerator.is_local_main_process:
            return
 
