@@ -769,9 +769,6 @@ class Trainer(object):
         self.model, self.dl, self.opt = self.accelerator.prepare(self.model, self.dl, self.opt)
 
     def save(self, milestone):
-        print('----------')
-        print('entered')
-        print('----------')
         if not self.accelerator.is_local_main_process:
            return
 
@@ -782,9 +779,6 @@ class Trainer(object):
             'ema': self.ema.state_dict(),
             'scaler': self.accelerator.scaler.state_dict() if exists(self.accelerator.scaler) else None
         }
-        print('------------')
-        print('returned')
-        print('------------')
         torch.save(data, str(self.results_folder / f'models/model-{milestone}.pt'))
 
     def load(self, milestone):
@@ -811,7 +805,7 @@ class Trainer(object):
         device = accelerator.device
 
         with tqdm(initial=self.step, total=self.train_num_steps, disable=not accelerator.is_main_process) as pbar:
-            print(self.step, self.train_num_steps)
+
             while self.step < self.train_num_steps:
 
                 total_loss = 0.
@@ -842,19 +836,12 @@ class Trainer(object):
                 self.opt.zero_grad()
 
                 accelerator.wait_for_everyone()
-                print('""""""" test test test """""""')
-                print(accelerator.is_main_process)
-                print('""""""""""""""""""""""""""""""')
                 if accelerator.is_main_process:
                     self.ema.to(device)
                     self.ema.update()
 
-                    print('-----------------------')
-                    print('hier::',self.step, self.save_and_sample_every)
-                    print('-----------------------')
                     if self.step != 0 and self.step % self.save_and_sample_every == 0:
-                        print('hier')
-                        print('-----------------------')
+
                         self.ema.ema_model.eval()
 
                         with torch.no_grad():
@@ -866,7 +853,6 @@ class Trainer(object):
                         utils.save_image(all_images, str(self.results_folder / f'samples/sample-{milestone}.png'),
                                          nrow=int(math.sqrt(self.num_samples)))
 
-                        print('saved')
                         self.save(milestone)
 
                 self.step += 1

@@ -77,13 +77,13 @@ def get_args_parser():
     parser.add_argument('--inference_num_samples', default=1, type=int,
                         help='Number of samples to save during inference')
 
-    parser.add_argument('--timesteps', type=int, default=10,
+    parser.add_argument('--timesteps', type=int, default=1000,
                         help='Number of noise levels')
-    parser.add_argument('--sampling_timesteps', type=int, default=10,
+    parser.add_argument('--sampling_timesteps', type=int, default=1000,
                         help='Number of noise levels for sampling')
     parser.add_argument('--loss_type', type=str, default='l1',
                         choices=['l1', 'l2'], help='Loss type')
-    parser.add_argument('--train_num_steps', type=int, default=10,
+    parser.add_argument('--train_num_steps', type=int, default=1000,
                         help='Number of total training steps')
     parser.add_argument("--ema_decay", default=0.995, type=float,
                         help="""EMA decay on parameters for inference""")
@@ -95,7 +95,7 @@ def get_args_parser():
                         help='Number of steps to update EMA')
     parser.add_argument('--adam_betas', type=tuple, default=(0.9, 0.99),
                         help='Adam betas')
-    parser.add_argument('--save_and_sample_every', type=int, default=2,
+    parser.add_argument('--save_and_sample_every', type=int, default=50,
                         help='Number of steps to save and sample')
     parser.add_argument('--num_samples', type=int, default=4,
                         help='Number of samples to save during training')
@@ -196,8 +196,8 @@ if __name__ == '__main__':
     args.num_gpus = 1
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
-    #model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
-    model = VisionTransformer(img_size=[args.image_size], patch_size=1)
+    model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
+    #model = VisionTransformer(img_size=[args.image_size], patch_size=1)
 
     num_model_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
