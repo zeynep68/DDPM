@@ -79,11 +79,11 @@ def get_args_parser():
 
     parser.add_argument('--timesteps', type=int, default=10,
                         help='Number of noise levels')
-    parser.add_argument('--sampling_timesteps', type=int, default=1000,
+    parser.add_argument('--sampling_timesteps', type=int, default=10,
                         help='Number of noise levels for sampling')
     parser.add_argument('--loss_type', type=str, default='l1',
                         choices=['l1', 'l2'], help='Loss type')
-    parser.add_argument('--train_num_steps', type=int, default=1000,
+    parser.add_argument('--train_num_steps', type=int, default=10,
                         help='Number of total training steps')
     parser.add_argument("--ema_decay", default=0.995, type=float,
                         help="""EMA decay on parameters for inference""")
