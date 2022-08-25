@@ -7,8 +7,8 @@ from pathlib import Path
 from torchvision import transforms as T, utils
 
 
-def get_args_parser_vit():
-    parser = argparse.ArgumentParser('DINO2', add_help=False)
+def get_args_parser():
+    parser = argparse.ArgumentParser('DINO', add_help=False)
 
     # Model parameters
     parser.add_argument('--vit_image_size', type=int, default=64,
@@ -116,7 +116,7 @@ def get_args_parser_vit():
     return parser
 
 
-def get_args_parser():
+def get_args_parser2():
     parser = argparse.ArgumentParser('DINO', add_help=False)
 
     # Model parameters
