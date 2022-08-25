@@ -755,6 +755,10 @@ class Trainer(object):
         self.opt = Adam(diffusion_model.parameters(), lr=args.train_lr, betas=args.adam_betas)
 
         # for logging results in a folder periodically
+        print('---------------')
+        print('Not logging!!')
+        print('---------------')
+        exit()
         if self.accelerator.is_main_process:
             self.ema = EMA(diffusion_model, beta=args.ema_decay, update_every=args.ema_update_every)
 
