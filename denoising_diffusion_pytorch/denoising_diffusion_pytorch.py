@@ -532,9 +532,7 @@ class GaussianDiffusion(nn.Module):
         return posterior_mean, posterior_variance, posterior_log_variance_clipped
 
     def model_predictions(self, x, t):
-        print('before unet:', x.shape)
         model_output = self.model(x, t)
-        print('after unet:', x.shape)
         if self.objective == 'pred_noise':
             pred_noise = model_output
             x_start = self.predict_start_from_noise(x, t, model_output)
