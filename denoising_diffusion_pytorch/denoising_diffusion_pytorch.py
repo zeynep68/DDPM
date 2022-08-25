@@ -441,6 +441,7 @@ class GaussianDiffusion(nn.Module):
             ddim_sampling_eta=1.
     ):
         super().__init__()
+        print('test diff:',model.channel, model.out_dim)
         assert not (type(self) == GaussianDiffusion and model.channels != model.out_dim)
 
         self.channels = channels

@@ -282,7 +282,7 @@ class VisionTransformer(nn.Module):
     def forward(self, x):
         bs, c, w, h = x.shape
         x, pos_embed = self.prepare_tokens(x)
-        print('test:', x.shape, pos_embed.shape)
+        print('test vit:', x.shape, pos_embed.shape)
         for blk in self.blocks:
             x = blk(x)
         x = self.norm(x)  # [bs, num_patches + 1, embed_dim]
