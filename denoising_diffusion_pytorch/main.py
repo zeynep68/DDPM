@@ -97,7 +97,7 @@ def get_args_parser():
                         help='Adam betas')
     parser.add_argument('--save_and_sample_every', type=int, default=10,
                         help='Number of steps to save and sample')
-    parser.add_argument('--num_samples', type=int, default=25,
+    parser.add_argument('--num_samples', type=int, default=2,
                         help='Number of samples to save during training')
     parser.add_argument('--results_folder', type=str, default='./results',
                         help='Folder to save results')
