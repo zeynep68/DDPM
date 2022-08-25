@@ -216,6 +216,7 @@ class VisionTransformer(nn.Module):
     def forward(self, x):
         bs, c, w, h = x.shape
         x, pos_embed = self.prepare_tokens(x)
+        print('test:',x.shape, pos_embed.shape)
         for blk in self.blocks:
             x = blk(x)
         x = self.norm(x)  # [bs, num_patches + 1, embed_dim]
@@ -223,6 +224,7 @@ class VisionTransformer(nn.Module):
         out = [self.head(x[:, i+1]).unsqueeze(2) for i in range(self.patch_embed.num_patches)]
         out = torch.cat(out, dim=2)  # [bs, patch_size*c, num_patches]
         out = F.fold(out, (w, h), self.patch_size, stride=self.patch_size)
+        print(out.shape)
         return out
 
     def get_last_selfattention(self, x):
@@ -265,7 +267,7 @@ def vit_base(patch_size=16, **kwargs):
         qkv_bias=True, norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     return model
 
-
+"""
 class DINOHead(nn.Module):
     def __init__(self, in_dim, out_dim, use_bn=False, norm_last_layer=True, nlayers=3, hidden_dim=2048, bottleneck_dim=256):
         super().__init__()
@@ -301,3 +303,4 @@ class DINOHead(nn.Module):
         x = nn.functional.normalize(x, dim=-1, p=2)
         x = self.last_layer(x)
         return x
+"""

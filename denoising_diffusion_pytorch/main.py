@@ -5,6 +5,7 @@ import os
 from denoising_diffusion_pytorch import Unet, GaussianDiffusion, Trainer
 from pathlib import Path
 from torchvision import transforms as T, utils
+from vision_transformer import VisionTransformer
 
 
 def get_args_parser():
@@ -194,8 +195,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.num_gpus = 1
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
-  
-    model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
+
+    #model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
+
+    model = VisionTransformer(img_size=[args.image_size], patch_size=1)
+
     num_model_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
     print(f'Initialized UNet model with {num_model_params:,} parameters.')
