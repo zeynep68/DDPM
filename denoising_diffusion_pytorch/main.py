@@ -194,7 +194,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.num_gpus = 1
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
-    print('test:', args.img_size)
+    print('test:', args.image_size)
     model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
     num_model_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
