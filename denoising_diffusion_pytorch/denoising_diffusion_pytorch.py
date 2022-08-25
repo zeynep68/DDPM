@@ -770,9 +770,6 @@ class Trainer(object):
 
     def save(self, milestone):
         if not self.accelerator.is_local_main_process:
-           print('------------')
-           print('returned')
-           print('------------')
            return
 
         data = {
@@ -782,7 +779,9 @@ class Trainer(object):
             'ema': self.ema.state_dict(),
             'scaler': self.accelerator.scaler.state_dict() if exists(self.accelerator.scaler) else None
         }
-
+        print('------------')
+        print('returned')
+        print('------------')
         torch.save(data, str(self.results_folder / f'models/model-{milestone}.pt'))
 
     def load(self, milestone):
