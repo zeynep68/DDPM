@@ -281,6 +281,7 @@ class VisionTransformer(nn.Module):
         return self.pos_drop(x), pos_embed
 
     def forward(self, x):
+        print('TEST')
         bs, c, w, h = x.shape
         x, pos_embed = self.prepare_tokens(x)
         print('test vit:', x.shape, pos_embed.shape)
