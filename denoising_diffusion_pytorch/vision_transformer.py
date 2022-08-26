@@ -284,7 +284,6 @@ class VisionTransformer(nn.Module):
 
     def forward(self, x, t):
         bs, c, w, h = x.shape
-        print(bs)
         x, pos_embed = self.prepare_tokens(x)
 
         for blk in self.blocks:
