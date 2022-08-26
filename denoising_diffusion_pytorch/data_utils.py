@@ -24,7 +24,7 @@ def get_data(args, indices=None):
     # transformation for the local small crops
     transform = transforms.Compose([
         normalize,
-        # resize,
+        resize,
     ])
 
     if os.path.isdir("/alto/shared/DataSets/cifar-10-batches-py"):
