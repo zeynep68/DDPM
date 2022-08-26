@@ -807,14 +807,13 @@ class Trainer(object):
         with tqdm(initial=self.step, total=self.train_num_steps, disable=not accelerator.is_main_process) as pbar:
 
             while self.step < self.train_num_steps:
-
+            print(self.step, self.gradient_accumulate_every)
                 total_loss = 0.
                 total_model_out = 0
                 log_dict = {}
 
                 for _ in range(self.gradient_accumulate_every):
                     data, idx = next(self.dl)
-                    print(idx)
                     data = data.to(device)
 
                     with self.accelerator.autocast():
