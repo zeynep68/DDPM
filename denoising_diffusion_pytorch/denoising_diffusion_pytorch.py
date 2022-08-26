@@ -2,6 +2,7 @@ import math
 import copy
 import torch
 import wandb
+from PIL import Image
 
 from torch import nn, einsum
 import torch.nn.functional as F
@@ -853,6 +854,9 @@ class Trainer(object):
                                          nrow=int(math.sqrt(self.num_samples)))
 
                         self.save(milestone)
+                        path = f'DDPM/denoising_diffusion_pytorch/results/samples/sample-{milestone}.png'
+                        img = Image.open(path)
+                        img.show()
 
                 self.step += 1
                 pbar.update(1)

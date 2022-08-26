@@ -265,8 +265,11 @@ class VisionTransformer(nn.Module):
         assert int(w0) == patch_pos_embed.shape[-2] and int(h0) == \
                patch_pos_embed.shape[-1]
         patch_pos_embed = patch_pos_embed.permute(0, 2, 3, 1).view(1, -1, dim)
-        #return torch.cat((class_pos_embed.unsqueeze(0), patch_pos_embed), dim=1)
-        return patch_pos_embed
+
+        ######## Testen ########
+        return torch.cat((class_pos_embed.unsqueeze(0), patch_pos_embed), dim=1)
+        ########################
+        #return patch_pos_embed
 
     def prepare_tokens(self, x):
         B, nc, w, h = x.shape
@@ -277,7 +280,7 @@ class VisionTransformer(nn.Module):
         cls_tokens = self.cls_token.expand(B, -1, -1)
 
         ##### Testen ######
-        #x = torch.cat((cls_tokens, x), dim=1)
+        x = torch.cat((cls_tokens, x), dim=1)
         ###################
 
         # add positional encoding to each token
@@ -295,8 +298,10 @@ class VisionTransformer(nn.Module):
         x = self.norm(x)  # [bs, num_patches + 1, embed_dim]
         x = x + pos_embed  # add positional embedding again before the
         # projection
-        out = [self.head(x[:, i]).unsqueeze(2) for i in
+        ##### Testen #########
+        out = [self.head(x[:, i + 1]).unsqueeze(2) for i in
                range(self.patch_embed.num_patches)]  ###
+        ####################
         out = torch.cat(out, dim=2)  # [bs, patch_size*c, num_patches]
         out = F.fold(out, (w, h), self.patch_size, stride=self.patch_size)  ###
         return out
