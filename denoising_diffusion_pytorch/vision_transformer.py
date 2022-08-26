@@ -296,6 +296,7 @@ class VisionTransformer(nn.Module):
         x = x + pos_embed  # add positional embedding again before the
         # projection
         print(x.shape)
+        print(self.patch_embed.num_patches)
         exit()
         out = [self.head(x[:, i + 1]).unsqueeze(2) for i in
                range(self.patch_embed.num_patches)]  ###
