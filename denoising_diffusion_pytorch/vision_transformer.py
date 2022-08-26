@@ -192,7 +192,7 @@ class VisionTransformer(nn.Module):
     """ Vision Transformer """
 
     def __init__(self, img_size=[224], patch_size=16, in_chans=3, num_classes=1,
-                 embed_dim=192, depth=12, num_heads=3, mlp_ratio=4.,
+                 embed_dim=384, depth=12, num_heads=6, mlp_ratio=4.,
                  qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
                  drop_path_rate=0., norm_layer=nn.LayerNorm, **kwargs):
         super().__init__()
