@@ -68,7 +68,7 @@ def get_args_parser():
                 rate is linearly scaled
                 with the batch size, and specified here for a reference batch 
                 size of 256""")
-    parser.add_argument('--batch_size_per_gpu', default=128, type=int,
+    parser.add_argument('--batch_size_per_gpu', default=256, type=int,
                         help='Per-GPU batch-size : number of distinct images '
                              'loaded on one GPU')
 
