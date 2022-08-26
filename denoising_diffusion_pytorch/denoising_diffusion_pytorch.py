@@ -856,7 +856,7 @@ class Trainer(object):
                         self.save(milestone)
                         path = f'DDPM/denoising_diffusion_pytorch/results/samples/sample-{milestone}.png'
                         img = Image.open(path)
-                        img.show()
+                        img.save()
                         print('------------------------')
                         print('------------------------')
                         print('------------------------')
