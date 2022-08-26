@@ -265,7 +265,8 @@ class VisionTransformer(nn.Module):
         assert int(w0) == patch_pos_embed.shape[-2] and int(h0) == \
                patch_pos_embed.shape[-1]
         patch_pos_embed = patch_pos_embed.permute(0, 2, 3, 1).view(1, -1, dim)
-        return torch.cat((class_pos_embed.unsqueeze(0), patch_pos_embed), dim=1)
+        #return torch.cat((class_pos_embed.unsqueeze(0), patch_pos_embed), dim=1)
+        return patch_pos_embed
 
     def prepare_tokens(self, x):
         B, nc, w, h = x.shape
