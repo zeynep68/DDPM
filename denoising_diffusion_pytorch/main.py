@@ -197,7 +197,7 @@ if __name__ == '__main__':
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     #model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
-    model = VisionTransformer(img_size=[args.image_size], patch_size=1)
+    model = VisionTransformer(img_size=[args.image_size], patch_size=4)
 
     num_model_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
