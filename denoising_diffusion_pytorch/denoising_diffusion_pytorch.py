@@ -565,7 +565,7 @@ class GaussianDiffusion(nn.Module):
         batch, device = shape[0], self.betas.device
 
         img = torch.randn(shape, device=device)
-        for t in tqdm(reversed(range(0, self.num_timesteps))): #, desc='sampling loop time step'):
+        for t in tqdm(reversed(range(0, self.num_timesteps))), desc='sampling loop time step'):
             # img2 = unnormalize_cifar10(img)[0].permute(1, 2, 0).detach().cpu().numpy()
             # plt.imshow(img2)
             # plt.show()
@@ -587,7 +587,7 @@ class GaussianDiffusion(nn.Module):
 
         img = torch.randn(shape, device=device)
 
-        for time, time_next in tqdm(time_pairs): #, desc='sampling loop time step'):
+        for time, time_next in tqdm(time_pairs, desc='sampling loop time step'):
             alpha = self.alphas_cumprod_prev[time]
             alpha_next = self.alphas_cumprod_prev[time_next]
 
