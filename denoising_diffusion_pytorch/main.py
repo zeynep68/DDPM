@@ -3,8 +3,6 @@ import argparse
 import os
 
 from denoising_diffusion_pytorch import Unet, GaussianDiffusion, Trainer
-from pathlib import Path
-from torchvision import transforms as T, utils
 from vision_transformer import VisionTransformer
 
 
@@ -68,7 +66,7 @@ def get_args_parser():
                 rate is linearly scaled
                 with the batch size, and specified here for a reference batch 
                 size of 256""")
-    parser.add_argument('--batch_size_per_gpu', default=64, type=int,
+    parser.add_argument('--batch_size_per_gpu', default=32, type=int,
                         help='Per-GPU batch-size : number of distinct images '
                              'loaded on one GPU')
 
@@ -121,11 +119,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser('DINO', parents=[get_args_parser()])
     args = parser.parse_args()
     args.num_gpus = 1
-    args.image_size = 224
+    args.image_size = 32
     # Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     #model = Unet(dim=64, dim_mults=(1, 2, 4, 8)).cuda()
-    model = VisionTransformer(img_size=[args.image_size], patch_size=16)
+    model = VisionTransformer(img_size=[args.image_size], patch_size=2)
 
     num_model_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
