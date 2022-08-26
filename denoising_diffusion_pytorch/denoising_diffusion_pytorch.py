@@ -814,6 +814,7 @@ class Trainer(object):
 
                 for _ in range(self.gradient_accumulate_every):
                     data, idx = next(self.dl)
+                    print(idx)
                     data = data.to(device)
 
                     with self.accelerator.autocast():
