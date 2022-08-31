@@ -1,6 +1,6 @@
+import os
 import torch
 import argparse
-import os
 
 from denoising_diffusion_pytorch import Unet, GaussianDiffusion, Trainer
 from vision_transformer import VisionTransformer
@@ -93,7 +93,7 @@ def get_args_parser():
                         help='Number of steps to update EMA')
     parser.add_argument('--adam_betas', type=tuple, default=(0.9, 0.99),
                         help='Adam betas')
-    parser.add_argument('--save_and_sample_every', type=int, default=100,
+    parser.add_argument('--save_and_sample_every', type=int, default=10,
                         help='Number of steps to save and sample')
     parser.add_argument('--num_samples', type=int, default=4,
                         help='Number of samples to save during training')
